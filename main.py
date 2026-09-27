@@ -1,5 +1,14 @@
 import datetime
 
+contacts = {
+    "Police": "112",
+    "Women Helpline": "181",
+    "Ambulance": "108"
+}
+sos_history = []
+incident_history = []
+
+
 def main():
     while True:
         show_header()
@@ -38,14 +47,7 @@ def main():
             print("TIME")
             print("EXIT")
         input("\nPress ENTER to continue...")
-        if __name__ == "__main__": 
-            contacts = {
-                "Police": "112",
-                "Women Helpline": "181",
-                "Ambulance": "108"
-            }
-            sos_history = []
-            incident_history = []
+
 
 def show_header():
     print()
@@ -55,6 +57,7 @@ def show_header():
     print("=" * 60)
     print("          DETECT | DOCUMENT | ESCALATE | PROTECT")
     print("=" * 60)
+
 
 def show_menu():
     print()
@@ -71,6 +74,7 @@ def show_menu():
     print("|   EXIT      - Close System                              |")
     print("|                                                          |")
     print("+----------------------------------------------------------+")
+
 
 def get_time():
     return datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
@@ -228,6 +232,7 @@ def report_incident():
         print("Invalid risk level.")
         print("Incident was not recorded.")
         return
+
     if person == "":
         person = "Description Not Provided"
 
@@ -249,7 +254,6 @@ def report_incident():
 
     incident_history.append(incident)
     with open("Incident_Report.txt", "a") as file:
-
         file.write("\n")
         file.write("=" * 60 + "\n")
         file.write("              SAFEGUARD INCIDENT REPORT\n")
@@ -267,10 +271,8 @@ def report_incident():
     print("=" * 60)
 
     if risk == "LOW":
-
         print()
         print("LOW RISK")
-
         print()
         print("Recommended Response:")
         print("- Stay aware of your surroundings.")
@@ -279,10 +281,8 @@ def report_incident():
         print("- Incident has been documented.")
 
     elif risk == "SUSPICIOUS":
-
         print()
         print("SUSPICIOUS ACTIVITY")
-
         print()
         print("Recommended Response:")
         print("- Move to a safe and populated location.")
@@ -302,9 +302,11 @@ def report_incident():
         print("- Women Helpline: 181")
         print("- Ambulance: 108")
         print("- Inform security personnel if available.")
+
     print()
     print(" Incident recorded successfully.")
     print(" Report saved as Incident_Report")
+
 
 def show_history():
     print()
@@ -315,9 +317,9 @@ def show_history():
     print("---------------- SOS ALERTS ----------------")
     print()
     if len(sos_history) == 0:
-      print("No SOS alerts in this session.")
+        print("No SOS alerts in this session.")
     else:
-      for number, alert in enumerate(sos_history, 1):
+        for number, alert in enumerate(sos_history, 1):
             print("-" * 50)
             print(f"SOS ALERT #{number}")
             print("-" * 50)
@@ -329,20 +331,19 @@ def show_history():
     print("------------- INCIDENT REPORTS -------------")
     print()
     if len(incident_history) == 0:
-      print("No incidents in this session.")
+        print("No incidents in this session.")
     else:
         for number, incident in enumerate(incident_history, 1):
-
             print("-" * 50)
             print(f"INCIDENT #{number}")
             print("-" * 50)
-
             print("Person   :", incident["person"])
             print("Location :", incident["location"])
             print("Activity :", incident["activity"])
             print("Risk     :", incident["risk"])
             print("Time     :", incident["time"])
-            
+
+
 def show_time():
     now = datetime.datetime.now()
     print()
@@ -352,6 +353,7 @@ def show_time():
     print()
     print("Date :", now.strftime("%d-%m-%Y"))
     print("Time :", now.strftime("%H:%M:%S"))
-    
-main()
 
+
+if __name__ == "__main__":
+    main()
